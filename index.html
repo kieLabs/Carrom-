@@ -1,0 +1,196 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="theme-color" content="#11100e">
+  <meta name="description" content="CARROM KING – GamerKie Edition. Play premium royal carrom, challenge AI, compete locally and become the king.">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <title>CARROM KING – GamerKie Edition</title>
+  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <div class="ambient ambient-one"></div><div class="ambient ambient-two"></div>
+  <div class="app-shell">
+    <header class="topbar">
+      <button class="brand" data-action="home" aria-label="Go to home">
+        <span class="brand-mark">G<span>K</span></span>
+        <span class="brand-copy"><strong>CARROM <em>KING</em></strong><small>GAMERKIE EDITION</small></span>
+      </button>
+      <div class="topbar-right">
+        <div class="wallet-pill"><span class="coin-glyph">◆</span><strong id="wallet-coins">350</strong><small>COINS</small></div>
+        <button class="icon-button" data-view="profile-view" aria-label="Player profile"><span id="avatar-initial">C</span></button>
+      </div>
+    </header>
+
+    <main id="main-content">
+      <!-- HOME -->
+      <section id="home-view" class="view active">
+        <div class="hero-grid">
+          <div class="hero-copy">
+            <div class="eyebrow"><span class="live-dot"></span> THE ROYAL CARROM EXPERIENCE</div>
+            <h1>PLAY. STRIKE.<br><span>POCKET.</span></h1>
+            <p class="hero-subtitle"><strong>BECOME THE KING.</strong> A royal board. A perfect strike. Your moment has arrived.</p>
+            <div class="hero-actions">
+              <button class="primary-button" data-view="mode-view"><span>▶</span> PLAY NOW</button>
+              <button class="ghost-button" data-view="howto-view">HOW TO PLAY <span>↗</span></button>
+            </div>
+            <div class="hero-proof"><span>✦</span> Offline play <i></i> Real physics <i></i> Local multiplayer</div>
+          </div>
+          <div class="hero-board-wrap" aria-label="Premium royal carrom board illustration">
+            <div class="hero-board-glow"></div>
+            <div class="hero-board">
+              <div class="hero-pocket p1"></div><div class="hero-pocket p2"></div><div class="hero-pocket p3"></div><div class="hero-pocket p4"></div>
+              <div class="hero-center"><b>GK</b><small>ROYAL CLUB</small></div>
+              <div class="hero-coin hc1"></div><div class="hero-coin hc2"></div><div class="hero-coin hc3"></div><div class="hero-coin hc4"></div><div class="hero-coin hc5"></div>
+              <div class="hero-striker"></div>
+            </div>
+            <div class="board-caption"><span>EST. 2026</span><strong>THE ROYAL TABLE</strong><span>GAMERKIE</span></div>
+          </div>
+        </div>
+
+        <div class="quick-stats">
+          <div class="stat-card"><span class="stat-icon">♛</span><div><strong id="home-wins">0</strong><small>CAREER WINS</small></div></div>
+          <div class="stat-card"><span class="stat-icon">◎</span><div><strong id="home-coins-pocketed">0</strong><small>COINS POCKETED</small></div></div>
+          <div class="stat-card"><span class="stat-icon">✦</span><div><strong id="home-streak">0</strong><small>WIN STREAK</small></div></div>
+          <button class="daily-card" data-action="claim-daily"><span class="daily-icon">🎁</span><span><strong>DAILY BONUS</strong><small id="daily-status">Claim 100 free coins</small></span><b>CLAIM ↗</b></button>
+        </div>
+
+        <div class="section-heading"><div><span class="eyebrow">CHOOSE YOUR EXPERIENCE</span><h2>The Royal Club</h2></div><span class="section-note">YOUR TABLE. YOUR RULES.</span></div>
+        <div class="feature-grid">
+          <button class="feature-card feature-play" data-view="mode-view"><span class="feature-index">01 / PLAY</span><span class="feature-art art-crown">♛</span><strong>Quick Match</strong><small>Challenge the AI or play with friends</small><b>ENTER ARENA ↗</b></button>
+          <button class="feature-card" data-view="collection-view"><span class="feature-index">02 / CUSTOMISE</span><span class="feature-art art-cue">◉</span><strong>Your Collection</strong><small>Boards, strikers and coin styles</small><b>VISIT THE SHOP ↗</b></button>
+          <button class="feature-card" data-view="rewards-view"><span class="feature-index">03 / EARN</span><span class="feature-art art-trophy">🏆</span><strong>Rewards & Missions</strong><small>Complete goals and earn royal coins</small><b>VIEW REWARDS ↗</b></button>
+        </div>
+        <footer class="home-footer"><span>CARROM KING – GAMERKIE EDITION</span><span>PLAY FAIR. STRIKE SMART. STAY ROYAL.</span><span>V1.0</span></footer>
+      </section>
+
+      <!-- MODE SELECT -->
+      <section id="mode-view" class="view">
+        <div class="page-heading"><button class="back-button" data-action="home">← BACK</button><div><span class="eyebrow">STEP 01 / SELECT MODE</span><h1>Choose your <em>battle.</em></h1><p>One board. Different ways to become champion.</p></div></div>
+        <div class="mode-grid">
+          <button class="mode-card selected" data-mode="ai"><span class="mode-number">01</span><span class="mode-icon">♛</span><strong>CLASSIC VS AI</strong><small>Face a smart opponent. Pick your difficulty and prove your skill.</small><span class="mode-tag">SOLO CHALLENGE</span></button>
+          <button class="mode-card" data-mode="local"><span class="mode-number">02</span><span class="mode-icon">⚔</span><strong>2 PLAYER LOCAL</strong><small>Two players. One device. Take turns and settle the score.</small><span class="mode-tag">PASS & PLAY</span></button>
+          <button class="mode-card" data-mode="team"><span class="mode-number">03</span><span class="mode-icon">♟</span><strong>2 VS 2 TEAM</strong><small>Four seats, two teams. Work together to clear your colour.</small><span class="mode-tag">TEAM MATCH</span></button>
+          <button class="mode-card" data-mode="practice"><span class="mode-number">04</span><span class="mode-icon">◎</span><strong>PRACTICE ROOM</strong><small>No pressure. Learn angles, control power and sharpen your aim.</small><span class="mode-tag">FREE PRACTICE</span></button>
+          <div class="mode-card mode-locked"><span class="mode-number">05</span><span class="mode-icon">⌁</span><strong>ONLINE MULTIPLAYER</strong><small>Online play needs a secure matchmaking and game server.</small><span class="mode-tag">SERVER REQUIRED · NOT ACTIVE</span></div>
+        </div>
+        <div class="player-setup" id="player-setup">
+          <div class="setup-heading"><span class="eyebrow">PLAYER SELECTION</span><small>NAME YOUR SIDE BEFORE THE MATCH</small></div>
+          <div class="player-name-fields">
+            <label>PLAYER 1 <input id="setup-player-one" maxlength="18" value="Carrom Champ" autocomplete="off"></label>
+            <label id="setup-player-two-wrap">PLAYER 2 / OPPONENT <input id="setup-player-two" maxlength="18" value="Player 2" autocomplete="off"></label>
+            <label id="setup-player-three-wrap" hidden>TEAMMATE <input id="setup-player-three" maxlength="18" value="Player 3" autocomplete="off"></label>
+            <label id="setup-player-four-wrap" hidden>OPPOSING TEAMMATE <input id="setup-player-four" maxlength="18" value="Player 4" autocomplete="off"></label>
+          </div>
+        </div>
+        <div class="mode-options">
+          <div class="option-block" id="difficulty-block"><label for="ai-difficulty">AI DIFFICULTY</label><select id="ai-difficulty"><option value="beginner">Beginner</option><option value="easy">Easy</option><option value="medium" selected>Medium</option><option value="hard">Hard</option><option value="expert">Expert</option><option value="master">Master</option></select></div>
+          <div class="option-block"><label for="arena-select">ROYAL ARENA</label><select id="arena-select"><option value="royal">Royal Walnut (Classic)</option><option value="emerald">Emerald Hall</option><option value="midnight">Midnight Gold</option></select></div>
+          <button id="start-match" class="primary-button start-match">START MATCH <span>→</span></button>
+        </div>
+      </section>
+
+      <!-- GAME -->
+      <section id="game-view" class="view game-view">
+        <div class="game-topline"><button class="back-button" data-action="leave-game">← EXIT TABLE</button><div class="game-mode-label"><span class="live-dot"></span><span id="game-mode-name">CLASSIC VS AI</span></div><button class="icon-button small-icon" data-action="pause" aria-label="Pause game">Ⅱ</button></div>
+        <div class="game-stage">
+          <aside class="player-rail player-rail-left">
+            <div class="player-chip active-player" id="player-one-card"><span class="player-avatar">P1</span><div><strong id="player-one-name">YOU</strong><small id="player-one-side">WHITE / TEAM 1</small></div><b id="player-one-score">0</b></div>
+            <div class="turn-banner" id="turn-banner"><span class="turn-pulse"></span><span id="turn-text">YOUR TURN</span></div>
+            <div class="game-tip"><span>✦ ROYAL TIP</span><p id="tip-text">Drag back from your striker to aim. Release to strike.</p></div>
+          </aside>
+          <div class="board-frame">
+            <div class="board-top-label"><span>GAMERKIE</span><b>ROYAL CARROM CLUB</b><span>EST. 2026</span></div>
+            <canvas id="carrom-board" width="1000" height="1000" aria-label="Carrom board. Drag from the striker backwards to aim, then release to shoot."></canvas>
+            <div class="board-bottom-label"><span>PLAY</span><b>STRIKE · POCKET · RULE</b><span>V1.0</span></div>
+          </div>
+          <aside class="player-rail player-rail-right">
+            <div class="player-chip" id="player-two-card"><span class="player-avatar avatar-dark">AI</span><div><strong id="player-two-name">ROYAL AI</strong><small id="player-two-side">BLACK / TEAM 2</small></div><b id="player-two-score">0</b></div>
+            <div class="power-box"><label>SHOT POWER</label><div class="power-track"><span id="power-fill"></span></div><small id="power-label">DRAG TO SET POWER</small></div>
+            <div class="game-actions"><button class="secondary-button" data-action="reset-shot">RESET AIM</button><button class="secondary-button" data-action="guide-toggle">TRAJECTORY: <span id="guide-state">ON</span></button><button class="secondary-button" data-action="sound-toggle">SOUND: <span id="sound-state">ON</span></button></div>
+          </aside>
+        </div>
+        <div class="game-controls"><div class="control-hint"><span class="desktop-hint">MOUSE / TOUCH</span><strong>DRAG BACK TO AIM</strong><small>Release to shoot · Slide striker left or right on the baseline</small></div><div class="turn-controls"><button class="round-control" data-action="rotate-left" aria-label="Move striker left">←</button><div class="striker-position"><span>STRIKER POSITION</span><input id="striker-position" type="range" min="190" max="810" value="500" aria-label="Striker horizontal position"></div><button class="round-control" data-action="rotate-right" aria-label="Move striker right">→</button></div></div>
+      </section>
+
+      <!-- COLLECTION -->
+      <section id="collection-view" class="view">
+        <div class="page-heading"><button class="back-button" data-action="home">← BACK</button><div><span class="eyebrow">THE ROYAL VAULT</span><h1>Your <em>collection.</em></h1><p>Make the table yours. Unlock a look, then equip it.</p></div></div>
+        <div class="collection-tabs"><button class="tab-button active" data-collection="boards">BOARDS</button><button class="tab-button" data-collection="strikers">STRIKERS</button><button class="tab-button" data-collection="coins">COIN STYLES</button></div>
+        <div id="collection-items" class="collection-grid"></div>
+      </section>
+
+      <!-- REWARDS -->
+      <section id="rewards-view" class="view">
+        <div class="page-heading"><button class="back-button" data-action="home">← BACK</button><div><span class="eyebrow">EARN YOUR CROWN</span><h1>Rewards & <em>missions.</em></h1><p>Every match moves you closer to the crown.</p></div></div>
+        <div class="reward-hero"><div><span class="eyebrow">DAILY ROYAL GIFT</span><h2>100 free coins.</h2><p>Come back every day and collect your royal bonus.</p><button class="gold-button" data-action="claim-daily">CLAIM DAILY BONUS ↗</button></div><div class="reward-gift">✦</div></div>
+        <div class="section-heading compact"><div><span class="eyebrow">TODAY'S OBJECTIVES</span><h2>Daily missions</h2></div><span class="section-note">RESETS DAILY</span></div>
+        <div id="mission-list" class="mission-list"></div>
+        <div class="section-heading compact"><div><span class="eyebrow">YOUR MILESTONES</span><h2>Achievements</h2></div></div>
+        <div id="achievement-list" class="achievement-grid"></div>
+      </section>
+
+      <!-- PROFILE -->
+      <section id="profile-view" class="view">
+        <div class="page-heading"><button class="back-button" data-action="home">← BACK</button><div><span class="eyebrow">PLAYER CARD</span><h1>The <em>champion.</em></h1><p>Your carrom journey, saved on this device.</p></div></div>
+        <div class="profile-hero"><div class="profile-avatar" id="profile-avatar">C</div><div><span class="eyebrow">ROYAL CLUB MEMBER</span><h2 id="profile-name">Carrom Champ</h2><p>Member of the GamerKie Royal Club</p><div class="profile-edit"><input id="player-name-input" maxlength="18" placeholder="Your player name"><button class="gold-button" data-action="save-name">SAVE NAME</button></div></div><div class="profile-rank"><span>♛</span><small>ROYAL<br>ROOKIE</small></div></div>
+        <div class="profile-stats"><div><strong id="profile-wins">0</strong><small>WINS</small></div><div><strong id="profile-losses">0</strong><small>LOSSES</small></div><div><strong id="profile-matches">0</strong><small>MATCHES</small></div><div><strong id="profile-pocketed">0</strong><small>POCKETED</small></div></div>
+        <div class="section-heading compact"><div><span class="eyebrow">RECENT TABLES</span><h2>Match history</h2></div></div>
+        <div id="match-history" class="history-list"></div>
+      </section>
+
+      <!-- LEADERBOARD -->
+      <section id="leaderboard-view" class="view">
+        <div class="page-heading"><button class="back-button" data-action="home">← BACK</button><div><span class="eyebrow">ROYAL RANKINGS</span><h1>Local <em>leaderboard.</em></h1><p>Best records saved on this device. Online rankings are not connected.</p></div></div>
+        <div class="leaderboard-card"><div class="leader-head"><span>RANK</span><span>PLAYER</span><span>WINS</span><span>WIN RATE</span></div><div id="leaderboard-rows"></div></div>
+      </section>
+
+      <!-- SETTINGS -->
+      <section id="settings-view" class="view">
+        <div class="page-heading"><button class="back-button" data-action="home">← BACK</button><div><span class="eyebrow">YOUR EXPERIENCE</span><h1>Game <em>settings.</em></h1><p>Set up your table the way you like it.</p></div></div>
+        <div class="settings-card">
+          <div class="setting-row"><div><strong>Sound effects</strong><small>Strikes, collisions, pockets and rewards</small></div><label class="switch"><input id="setting-sound" type="checkbox"><span></span></label></div>
+          <div class="setting-row"><div><strong>Background music</strong><small>Subtle royal ambient tone during menus</small></div><label class="switch"><input id="setting-music" type="checkbox"><span></span></label></div>
+          <div class="setting-row"><div><strong>Vibration</strong><small>Haptic feedback on supported phones</small></div><label class="switch"><input id="setting-vibration" type="checkbox"><span></span></label></div>
+          <div class="setting-row"><div><strong>Trajectory guide</strong><small>Show the aiming direction before a shot</small></div><label class="switch"><input id="setting-guide" type="checkbox"><span></span></label></div>
+          <div class="setting-row danger-row"><div><strong>Reset local progress</strong><small>Delete coins, stats, unlocks and settings from this device</small></div><button class="danger-button" data-action="reset-progress">RESET DATA</button></div>
+        </div>
+      </section>
+
+      <!-- HOW TO -->
+      <section id="howto-view" class="view">
+        <div class="page-heading"><button class="back-button" data-action="home">← BACK</button><div><span class="eyebrow">THE RULES OF THE TABLE</span><h1>How to <em>play.</em></h1><p>Learn the basics before taking your seat.</p></div></div>
+        <div class="howto-grid">
+          <article class="howto-card"><span>01</span><h3>Choose your colour</h3><p>One player pockets white coins; the other pockets black coins. The red queen is the most valuable piece.</p></article>
+          <article class="howto-card"><span>02</span><h3>Aim your striker</h3><p>Move your striker left or right along your baseline. Drag backwards from the striker to set direction and power, then release.</p></article>
+          <article class="howto-card"><span>03</span><h3>Pocket your coins</h3><p>Clear all nine coins of your colour. A successful pocket of your own coin earns another turn.</p></article>
+          <article class="howto-card"><span>04</span><h3>Cover the queen</h3><p>Pocket the red queen together with one of your own coins in the same shot to cover it. If the queen goes in alone, it returns to the centre.</p></article>
+          <article class="howto-card"><span>05</span><h3>Avoid a foul</h3><p>Do not pocket the striker. A striker foul costs a turn and one of your pocketed coins may be returned to the board.</p></article>
+          <article class="howto-card"><span>06</span><h3>Win the match</h3><p>Clear all your colour coins and cover the queen. Practice mode is relaxed and has no opponent turn.</p></article>
+        </div>
+        <div class="physics-note"><span>✦</span><div><strong>REAL-TIME TABLE PHYSICS</strong><p>Coins collide, rebound from the cushions, slow down with surface friction and drop into pockets. Aim carefully—power is not everything.</p></div></div>
+      </section>
+    </main>
+
+    <nav class="bottom-nav" aria-label="Main navigation">
+      <button class="nav-item active" data-view="home-view"><span>⌂</span><small>HOME</small></button>
+      <button class="nav-item" data-view="mode-view"><span>♛</span><small>PLAY</small></button>
+      <button class="nav-item" data-view="collection-view"><span>◈</span><small>VAULT</small></button>
+      <button class="nav-item" data-view="leaderboard-view"><span>♜</span><small>RANKS</small></button>
+      <button class="nav-item" data-view="settings-view"><span>⚙</span><small>SETTINGS</small></button>
+    </nav>
+  </div>
+
+  <div id="pause-modal" class="modal-backdrop" hidden><div class="modal-card"><button class="modal-close" data-action="resume">×</button><span class="eyebrow">TAKE A BREATHER</span><h2>Game <em>paused.</em></h2><p>Your current match is waiting for you.</p><button class="primary-button full-button" data-action="resume">RESUME MATCH</button><button class="ghost-button full-button" data-action="leave-game">EXIT TO HOME</button></div></div>
+  <div id="result-modal" class="modal-backdrop" hidden><div class="modal-card result-card"><div class="result-crown">♛</div><span class="eyebrow" id="result-kicker">MATCH COMPLETE</span><h2 id="result-title">Victory!</h2><p id="result-copy">A royal performance.</p><div class="result-reward"><span>REWARD</span><strong id="result-coins">+50 COINS</strong></div><button class="primary-button full-button" data-action="rematch">PLAY AGAIN</button><button class="ghost-button full-button" data-action="home-result">BACK TO CLUB</button></div></div>
+  <div id="confirm-modal" class="modal-backdrop" hidden><div class="modal-card"><span class="eyebrow">ARE YOU SURE?</span><h2>Reset <em>progress?</em></h2><p>This permanently clears your local wallet, records and unlocked items on this device.</p><div class="modal-actions"><button class="danger-button" data-action="confirm-reset">YES, RESET</button><button class="secondary-button" data-action="cancel-reset">CANCEL</button></div></div></div>
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+  <script src="js/physics.js"></script>
+  <script src="js/storage.js"></script>
+  <script src="js/rules.js"></script>
+  <script src="js/game.js"></script>
+</body>
+</html>
