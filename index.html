@@ -1,196 +1,175 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-  <meta name="theme-color" content="#11100e">
-  <meta name="description" content="CARROM KING – GamerKie Edition. Play premium royal carrom, challenge AI, compete locally and become the king.">
-  <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-  <title>CARROM KING – GamerKie Edition</title>
-  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
-  <link rel="stylesheet" href="css/styles.css">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
+<meta name="theme-color" content="#17132e">
+<meta name="description" content="Carrom Pool – GamerKie Edition. Play classic carrom, Disc Pool and Freestyle with realistic canvas physics.">
+<title>CARROM POOL – GAMERKIE EDITION</title>
+<style>
+:root{--bg:#100d24;--panel:#211b42;--gold:#f6c968;--gold2:#a96c25;--muted:#aaa5c6;--white:#fff9ed;--blue:#4f5de4;--green:#52d6a3;--red:#ff596d}
+*{box-sizing:border-box}html,body{margin:0;width:100%;height:100%;overflow:hidden;background:radial-gradient(ellipse at 50% 0%,#35265e 0,#17132e 50%,#0c0a19 100%);color:var(--white);font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;touch-action:pan-y}
+button{font:inherit;color:inherit;border:0;cursor:pointer}button:focus-visible,input:focus-visible{outline:2px solid #ffe39a;outline-offset:3px}
+#app{height:100dvh;min-height:100%;display:flex;flex-direction:column;max-width:1100px;margin:auto;padding:env(safe-area-inset-top) 12px env(safe-area-inset-bottom);position:relative}
+.topbar{height:58px;flex:none;display:flex;align-items:center;justify-content:space-between;gap:8px}
+.brand{display:flex;align-items:center;gap:9px;background:none;text-align:left;padding:4px}.logo{width:36px;height:36px;border-radius:12px;background:linear-gradient(145deg,#ffe6a0,#a96b20);color:#25152c;display:grid;place-items:center;font-weight:1000;font-size:21px;box-shadow:0 3px 14px #e9b84d55}.brand b{letter-spacing:1px;font-size:15px}.brand small{display:block;color:#c6b9df;font-size:8px;letter-spacing:2px}
+.wallet{display:flex;align-items:center;gap:8px}.pill{border:1px solid #f6c96855;background:#241d42;border-radius:22px;padding:7px 11px;font-size:12px;white-space:nowrap}.pill span{color:var(--gold);font-weight:800}.iconbtn{width:36px;height:36px;border-radius:12px;background:#302751;border:1px solid #ffffff24}
+.screen{display:none;flex:1;min-height:0;overflow:auto;scrollbar-width:thin}.screen.active{display:flex;flex-direction:column}
+#lobby{justify-content:center;gap:15px;padding:5px 2px 16px}
+.hero{text-align:center;padding:8px 4px}.eyebrow{color:var(--gold);letter-spacing:3px;font-size:9px;font-weight:900}.hero h1{font-size:clamp(27px,6vw,48px);line-height:1;margin:8px 0 5px;letter-spacing:1px;text-shadow:0 4px 20px #0008}.hero h1 em{font-style:normal;color:var(--gold)}.hero p{margin:0;color:#c7c0dc;font-size:12px}
+.lobby-cards{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;max-width:700px;width:100%;margin:0 auto}
+.mode{position:relative;min-height:84px;text-align:left;padding:13px 14px;border-radius:17px;background:linear-gradient(145deg,#41336d,#201a3c 75%);border:1px solid #f3ce7855;box-shadow:inset 0 1px #ffffff24,0 7px 16px #0004;overflow:hidden}
+.mode:after{content:"";position:absolute;width:90px;height:90px;border-radius:50%;right:-30px;top:-36px;background:#f7ce7030;filter:blur(1px)}.mode strong{display:block;font-size:13px;letter-spacing:.6px}.mode small{display:block;color:#c7c0dc;font-size:10px;margin-top:5px}.mode .symbol{float:right;color:var(--gold);font-size:25px;margin:0 4px;position:relative;z-index:1}
+.lobby-bottom{display:flex;align-items:center;justify-content:center;gap:12px;flex-wrap:wrap;color:#c5bdd7;font-size:10px}
+.preview{width:58px;height:58px;border-radius:50%;background:radial-gradient(circle at 35% 25%,#fff8c9,#f2b93c 35%,#7e4516 75%);box-shadow:0 0 22px #f6c96866,inset 0 -5px 7px #45260b;position:relative;border:3px solid #ffe7a0}
+.primary,.secondary{border-radius:13px;padding:12px 18px;font-weight:900;letter-spacing:1px;font-size:11px}.primary{background:linear-gradient(135deg,#ffe39a,#d18b31);color:#29192a;box-shadow:0 5px 18px #e6a94344}.secondary{background:#302751;border:1px solid #ffffff25}
+#game{gap:7px;padding-bottom:5px;overflow:hidden}
+.hud{display:flex;align-items:center;justify-content:space-between;gap:8px;flex:none}.player{display:flex;align-items:center;gap:7px;background:#211b3c;border:1px solid #ffffff20;border-radius:13px;padding:6px 9px;min-width:0;flex:1}.avatar{width:30px;height:30px;flex:none;border-radius:10px;background:linear-gradient(145deg,#ffe39a,#9c5a26);display:grid;place-items:center;color:#27172b;font-weight:1000}.player b{font-size:10px;display:block}.player small{display:block;color:#b9b1d1;font-size:9px}.player.active{border-color:var(--gold);box-shadow:0 0 14px #f6c96855}.turn-dot{width:7px;height:7px;border-radius:50%;background:#6a617e;margin-left:auto}.player.active .turn-dot{background:#5df2b4;box-shadow:0 0 9px #5df2b4}
+#status{font-size:10px;text-align:center;color:var(--gold);height:15px;flex:none}
+.board-wrap{flex:1;min-height:0;display:flex;align-items:center;justify-content:center;position:relative}
+#board{display:block;width:min(100%,calc((100dvh - 190px)*1));height:auto;max-height:100%;aspect-ratio:1/1;touch-action:none;border-radius:13px;box-shadow:0 15px 40px #0009,0 0 0 5px #3d2419,0 0 0 8px #d29a47}
+.controls{flex:none;display:flex;align-items:center;gap:10px;padding:5px 2px 2px}.sliderbox{flex:1;background:#211b3c;border:1px solid #ffffff20;border-radius:13px;padding:7px 11px}.sliderbox label{display:flex;justify-content:space-between;color:#c8c0db;font-size:9px;margin-bottom:4px}.sliderbox input{width:100%;accent-color:#f4c45f;height:18px}.ctrlbtn{width:42px;height:42px;border-radius:12px;background:#302751;border:1px solid #ffffff25;font-size:17px}
+.game-actions{display:flex;justify-content:center;gap:7px;flex:none}.game-actions button{font-size:9px;padding:7px 12px;border-radius:10px;background:#2b2449;border:1px solid #ffffff20}
+.overlay{position:fixed;inset:0;background:#090716d9;display:none;align-items:center;justify-content:center;padding:20px;z-index:10}.overlay.show{display:flex}.modal{width:min(360px,100%);background:linear-gradient(145deg,#352958,#17132e);border:1px solid #f6c96888;border-radius:20px;padding:22px;text-align:center;box-shadow:0 20px 60px #000b}.modal h2{margin:0 0 8px;color:var(--gold)}.modal p{color:#d4cde4;font-size:12px}.modal .row{display:flex;gap:8px;justify-content:center;margin-top:15px}
+#toast{position:fixed;top:65px;left:50%;transform:translateX(-50%);background:#f5c96b;color:#2a1930;padding:8px 16px;border-radius:30px;font-size:11px;font-weight:900;opacity:0;pointer-events:none;transition:opacity .2s;z-index:20}#toast.show{opacity:1}
+@media(min-width:760px){#app{padding-left:24px;padding-right:24px}.lobby-cards{grid-template-columns:repeat(4,1fr)}.mode{min-height:130px}.hero{padding:15px}.player{max-width:220px}.controls{max-width:720px;width:100%;margin:auto}}
+@media(max-height:620px){.topbar{height:44px}.hero{padding:0}.hero h1{font-size:26px}.mode{min-height:70px;padding:9px}.mode small{font-size:9px}.controls{padding:1px}.ctrlbtn{height:34px;width:36px}.game-actions button{padding:5px 9px}#status{height:12px}}
+</style>
 </head>
 <body>
-  <div class="ambient ambient-one"></div><div class="ambient ambient-two"></div>
-  <div class="app-shell">
-    <header class="topbar">
-      <button class="brand" data-action="home" aria-label="Go to home">
-        <span class="brand-mark">G<span>K</span></span>
-        <span class="brand-copy"><strong>CARROM <em>KING</em></strong><small>GAMERKIE EDITION</small></span>
-      </button>
-      <div class="topbar-right">
-        <div class="wallet-pill"><span class="coin-glyph">◆</span><strong id="wallet-coins">350</strong><small>COINS</small></div>
-        <button class="icon-button" data-view="profile-view" aria-label="Player profile"><span id="avatar-initial">C</span></button>
-      </div>
-    </header>
-
-    <main id="main-content">
-      <!-- HOME -->
-      <section id="home-view" class="view active">
-        <div class="hero-grid">
-          <div class="hero-copy">
-            <div class="eyebrow"><span class="live-dot"></span> THE ROYAL CARROM EXPERIENCE</div>
-            <h1>PLAY. STRIKE.<br><span>POCKET.</span></h1>
-            <p class="hero-subtitle"><strong>BECOME THE KING.</strong> A royal board. A perfect strike. Your moment has arrived.</p>
-            <div class="hero-actions">
-              <button class="primary-button" data-view="mode-view"><span>▶</span> PLAY NOW</button>
-              <button class="ghost-button" data-view="howto-view">HOW TO PLAY <span>↗</span></button>
-            </div>
-            <div class="hero-proof"><span>✦</span> Offline play <i></i> Real physics <i></i> Local multiplayer</div>
-          </div>
-          <div class="hero-board-wrap" aria-label="Premium royal carrom board illustration">
-            <div class="hero-board-glow"></div>
-            <div class="hero-board">
-              <div class="hero-pocket p1"></div><div class="hero-pocket p2"></div><div class="hero-pocket p3"></div><div class="hero-pocket p4"></div>
-              <div class="hero-center"><b>GK</b><small>ROYAL CLUB</small></div>
-              <div class="hero-coin hc1"></div><div class="hero-coin hc2"></div><div class="hero-coin hc3"></div><div class="hero-coin hc4"></div><div class="hero-coin hc5"></div>
-              <div class="hero-striker"></div>
-            </div>
-            <div class="board-caption"><span>EST. 2026</span><strong>THE ROYAL TABLE</strong><span>GAMERKIE</span></div>
-          </div>
-        </div>
-
-        <div class="quick-stats">
-          <div class="stat-card"><span class="stat-icon">♛</span><div><strong id="home-wins">0</strong><small>CAREER WINS</small></div></div>
-          <div class="stat-card"><span class="stat-icon">◎</span><div><strong id="home-coins-pocketed">0</strong><small>COINS POCKETED</small></div></div>
-          <div class="stat-card"><span class="stat-icon">✦</span><div><strong id="home-streak">0</strong><small>WIN STREAK</small></div></div>
-          <button class="daily-card" data-action="claim-daily"><span class="daily-icon">🎁</span><span><strong>DAILY BONUS</strong><small id="daily-status">Claim 100 free coins</small></span><b>CLAIM ↗</b></button>
-        </div>
-
-        <div class="section-heading"><div><span class="eyebrow">CHOOSE YOUR EXPERIENCE</span><h2>The Royal Club</h2></div><span class="section-note">YOUR TABLE. YOUR RULES.</span></div>
-        <div class="feature-grid">
-          <button class="feature-card feature-play" data-view="mode-view"><span class="feature-index">01 / PLAY</span><span class="feature-art art-crown">♛</span><strong>Quick Match</strong><small>Challenge the AI or play with friends</small><b>ENTER ARENA ↗</b></button>
-          <button class="feature-card" data-view="collection-view"><span class="feature-index">02 / CUSTOMISE</span><span class="feature-art art-cue">◉</span><strong>Your Collection</strong><small>Boards, strikers and coin styles</small><b>VISIT THE SHOP ↗</b></button>
-          <button class="feature-card" data-view="rewards-view"><span class="feature-index">03 / EARN</span><span class="feature-art art-trophy">🏆</span><strong>Rewards & Missions</strong><small>Complete goals and earn royal coins</small><b>VIEW REWARDS ↗</b></button>
-        </div>
-        <footer class="home-footer"><span>CARROM KING – GAMERKIE EDITION</span><span>PLAY FAIR. STRIKE SMART. STAY ROYAL.</span><span>V1.0</span></footer>
-      </section>
-
-      <!-- MODE SELECT -->
-      <section id="mode-view" class="view">
-        <div class="page-heading"><button class="back-button" data-action="home">← BACK</button><div><span class="eyebrow">STEP 01 / SELECT MODE</span><h1>Choose your <em>battle.</em></h1><p>One board. Different ways to become champion.</p></div></div>
-        <div class="mode-grid">
-          <button class="mode-card selected" data-mode="ai"><span class="mode-number">01</span><span class="mode-icon">♛</span><strong>CLASSIC VS AI</strong><small>Face a smart opponent. Pick your difficulty and prove your skill.</small><span class="mode-tag">SOLO CHALLENGE</span></button>
-          <button class="mode-card" data-mode="local"><span class="mode-number">02</span><span class="mode-icon">⚔</span><strong>2 PLAYER LOCAL</strong><small>Two players. One device. Take turns and settle the score.</small><span class="mode-tag">PASS & PLAY</span></button>
-          <button class="mode-card" data-mode="team"><span class="mode-number">03</span><span class="mode-icon">♟</span><strong>2 VS 2 TEAM</strong><small>Four seats, two teams. Work together to clear your colour.</small><span class="mode-tag">TEAM MATCH</span></button>
-          <button class="mode-card" data-mode="practice"><span class="mode-number">04</span><span class="mode-icon">◎</span><strong>PRACTICE ROOM</strong><small>No pressure. Learn angles, control power and sharpen your aim.</small><span class="mode-tag">FREE PRACTICE</span></button>
-          <div class="mode-card mode-locked"><span class="mode-number">05</span><span class="mode-icon">⌁</span><strong>ONLINE MULTIPLAYER</strong><small>Online play needs a secure matchmaking and game server.</small><span class="mode-tag">SERVER REQUIRED · NOT ACTIVE</span></div>
-        </div>
-        <div class="player-setup" id="player-setup">
-          <div class="setup-heading"><span class="eyebrow">PLAYER SELECTION</span><small>NAME YOUR SIDE BEFORE THE MATCH</small></div>
-          <div class="player-name-fields">
-            <label>PLAYER 1 <input id="setup-player-one" maxlength="18" value="Carrom Champ" autocomplete="off"></label>
-            <label id="setup-player-two-wrap">PLAYER 2 / OPPONENT <input id="setup-player-two" maxlength="18" value="Player 2" autocomplete="off"></label>
-            <label id="setup-player-three-wrap" hidden>TEAMMATE <input id="setup-player-three" maxlength="18" value="Player 3" autocomplete="off"></label>
-            <label id="setup-player-four-wrap" hidden>OPPOSING TEAMMATE <input id="setup-player-four" maxlength="18" value="Player 4" autocomplete="off"></label>
-          </div>
-        </div>
-        <div class="mode-options">
-          <div class="option-block" id="difficulty-block"><label for="ai-difficulty">AI DIFFICULTY</label><select id="ai-difficulty"><option value="beginner">Beginner</option><option value="easy">Easy</option><option value="medium" selected>Medium</option><option value="hard">Hard</option><option value="expert">Expert</option><option value="master">Master</option></select></div>
-          <div class="option-block"><label for="arena-select">ROYAL ARENA</label><select id="arena-select"><option value="royal">Royal Walnut (Classic)</option><option value="emerald">Emerald Hall</option><option value="midnight">Midnight Gold</option></select></div>
-          <button id="start-match" class="primary-button start-match">START MATCH <span>→</span></button>
-        </div>
-      </section>
-
-      <!-- GAME -->
-      <section id="game-view" class="view game-view">
-        <div class="game-topline"><button class="back-button" data-action="leave-game">← EXIT TABLE</button><div class="game-mode-label"><span class="live-dot"></span><span id="game-mode-name">CLASSIC VS AI</span></div><button class="icon-button small-icon" data-action="pause" aria-label="Pause game">Ⅱ</button></div>
-        <div class="game-stage">
-          <aside class="player-rail player-rail-left">
-            <div class="player-chip active-player" id="player-one-card"><span class="player-avatar">P1</span><div><strong id="player-one-name">YOU</strong><small id="player-one-side">WHITE / TEAM 1</small></div><b id="player-one-score">0</b></div>
-            <div class="turn-banner" id="turn-banner"><span class="turn-pulse"></span><span id="turn-text">YOUR TURN</span></div>
-            <div class="game-tip"><span>✦ ROYAL TIP</span><p id="tip-text">Drag back from your striker to aim. Release to strike.</p></div>
-          </aside>
-          <div class="board-frame">
-            <div class="board-top-label"><span>GAMERKIE</span><b>ROYAL CARROM CLUB</b><span>EST. 2026</span></div>
-            <canvas id="carrom-board" width="1000" height="1000" aria-label="Carrom board. Drag from the striker backwards to aim, then release to shoot."></canvas>
-            <div class="board-bottom-label"><span>PLAY</span><b>STRIKE · POCKET · RULE</b><span>V1.0</span></div>
-          </div>
-          <aside class="player-rail player-rail-right">
-            <div class="player-chip" id="player-two-card"><span class="player-avatar avatar-dark">AI</span><div><strong id="player-two-name">ROYAL AI</strong><small id="player-two-side">BLACK / TEAM 2</small></div><b id="player-two-score">0</b></div>
-            <div class="power-box"><label>SHOT POWER</label><div class="power-track"><span id="power-fill"></span></div><small id="power-label">DRAG TO SET POWER</small></div>
-            <div class="game-actions"><button class="secondary-button" data-action="reset-shot">RESET AIM</button><button class="secondary-button" data-action="guide-toggle">TRAJECTORY: <span id="guide-state">ON</span></button><button class="secondary-button" data-action="sound-toggle">SOUND: <span id="sound-state">ON</span></button></div>
-          </aside>
-        </div>
-        <div class="game-controls"><div class="control-hint"><span class="desktop-hint">MOUSE / TOUCH</span><strong>DRAG BACK TO AIM</strong><small>Release to shoot · Slide striker left or right on the baseline</small></div><div class="turn-controls"><button class="round-control" data-action="rotate-left" aria-label="Move striker left">←</button><div class="striker-position"><span>STRIKER POSITION</span><input id="striker-position" type="range" min="190" max="810" value="500" aria-label="Striker horizontal position"></div><button class="round-control" data-action="rotate-right" aria-label="Move striker right">→</button></div></div>
-      </section>
-
-      <!-- COLLECTION -->
-      <section id="collection-view" class="view">
-        <div class="page-heading"><button class="back-button" data-action="home">← BACK</button><div><span class="eyebrow">THE ROYAL VAULT</span><h1>Your <em>collection.</em></h1><p>Make the table yours. Unlock a look, then equip it.</p></div></div>
-        <div class="collection-tabs"><button class="tab-button active" data-collection="boards">BOARDS</button><button class="tab-button" data-collection="strikers">STRIKERS</button><button class="tab-button" data-collection="coins">COIN STYLES</button></div>
-        <div id="collection-items" class="collection-grid"></div>
-      </section>
-
-      <!-- REWARDS -->
-      <section id="rewards-view" class="view">
-        <div class="page-heading"><button class="back-button" data-action="home">← BACK</button><div><span class="eyebrow">EARN YOUR CROWN</span><h1>Rewards & <em>missions.</em></h1><p>Every match moves you closer to the crown.</p></div></div>
-        <div class="reward-hero"><div><span class="eyebrow">DAILY ROYAL GIFT</span><h2>100 free coins.</h2><p>Come back every day and collect your royal bonus.</p><button class="gold-button" data-action="claim-daily">CLAIM DAILY BONUS ↗</button></div><div class="reward-gift">✦</div></div>
-        <div class="section-heading compact"><div><span class="eyebrow">TODAY'S OBJECTIVES</span><h2>Daily missions</h2></div><span class="section-note">RESETS DAILY</span></div>
-        <div id="mission-list" class="mission-list"></div>
-        <div class="section-heading compact"><div><span class="eyebrow">YOUR MILESTONES</span><h2>Achievements</h2></div></div>
-        <div id="achievement-list" class="achievement-grid"></div>
-      </section>
-
-      <!-- PROFILE -->
-      <section id="profile-view" class="view">
-        <div class="page-heading"><button class="back-button" data-action="home">← BACK</button><div><span class="eyebrow">PLAYER CARD</span><h1>The <em>champion.</em></h1><p>Your carrom journey, saved on this device.</p></div></div>
-        <div class="profile-hero"><div class="profile-avatar" id="profile-avatar">C</div><div><span class="eyebrow">ROYAL CLUB MEMBER</span><h2 id="profile-name">Carrom Champ</h2><p>Member of the GamerKie Royal Club</p><div class="profile-edit"><input id="player-name-input" maxlength="18" placeholder="Your player name"><button class="gold-button" data-action="save-name">SAVE NAME</button></div></div><div class="profile-rank"><span>♛</span><small>ROYAL<br>ROOKIE</small></div></div>
-        <div class="profile-stats"><div><strong id="profile-wins">0</strong><small>WINS</small></div><div><strong id="profile-losses">0</strong><small>LOSSES</small></div><div><strong id="profile-matches">0</strong><small>MATCHES</small></div><div><strong id="profile-pocketed">0</strong><small>POCKETED</small></div></div>
-        <div class="section-heading compact"><div><span class="eyebrow">RECENT TABLES</span><h2>Match history</h2></div></div>
-        <div id="match-history" class="history-list"></div>
-      </section>
-
-      <!-- LEADERBOARD -->
-      <section id="leaderboard-view" class="view">
-        <div class="page-heading"><button class="back-button" data-action="home">← BACK</button><div><span class="eyebrow">ROYAL RANKINGS</span><h1>Local <em>leaderboard.</em></h1><p>Best records saved on this device. Online rankings are not connected.</p></div></div>
-        <div class="leaderboard-card"><div class="leader-head"><span>RANK</span><span>PLAYER</span><span>WINS</span><span>WIN RATE</span></div><div id="leaderboard-rows"></div></div>
-      </section>
-
-      <!-- SETTINGS -->
-      <section id="settings-view" class="view">
-        <div class="page-heading"><button class="back-button" data-action="home">← BACK</button><div><span class="eyebrow">YOUR EXPERIENCE</span><h1>Game <em>settings.</em></h1><p>Set up your table the way you like it.</p></div></div>
-        <div class="settings-card">
-          <div class="setting-row"><div><strong>Sound effects</strong><small>Strikes, collisions, pockets and rewards</small></div><label class="switch"><input id="setting-sound" type="checkbox"><span></span></label></div>
-          <div class="setting-row"><div><strong>Background music</strong><small>Subtle royal ambient tone during menus</small></div><label class="switch"><input id="setting-music" type="checkbox"><span></span></label></div>
-          <div class="setting-row"><div><strong>Vibration</strong><small>Haptic feedback on supported phones</small></div><label class="switch"><input id="setting-vibration" type="checkbox"><span></span></label></div>
-          <div class="setting-row"><div><strong>Trajectory guide</strong><small>Show the aiming direction before a shot</small></div><label class="switch"><input id="setting-guide" type="checkbox"><span></span></label></div>
-          <div class="setting-row danger-row"><div><strong>Reset local progress</strong><small>Delete coins, stats, unlocks and settings from this device</small></div><button class="danger-button" data-action="reset-progress">RESET DATA</button></div>
-        </div>
-      </section>
-
-      <!-- HOW TO -->
-      <section id="howto-view" class="view">
-        <div class="page-heading"><button class="back-button" data-action="home">← BACK</button><div><span class="eyebrow">THE RULES OF THE TABLE</span><h1>How to <em>play.</em></h1><p>Learn the basics before taking your seat.</p></div></div>
-        <div class="howto-grid">
-          <article class="howto-card"><span>01</span><h3>Choose your colour</h3><p>One player pockets white coins; the other pockets black coins. The red queen is the most valuable piece.</p></article>
-          <article class="howto-card"><span>02</span><h3>Aim your striker</h3><p>Move your striker left or right along your baseline. Drag backwards from the striker to set direction and power, then release.</p></article>
-          <article class="howto-card"><span>03</span><h3>Pocket your coins</h3><p>Clear all nine coins of your colour. A successful pocket of your own coin earns another turn.</p></article>
-          <article class="howto-card"><span>04</span><h3>Cover the queen</h3><p>Pocket the red queen together with one of your own coins in the same shot to cover it. If the queen goes in alone, it returns to the centre.</p></article>
-          <article class="howto-card"><span>05</span><h3>Avoid a foul</h3><p>Do not pocket the striker. A striker foul costs a turn and one of your pocketed coins may be returned to the board.</p></article>
-          <article class="howto-card"><span>06</span><h3>Win the match</h3><p>Clear all your colour coins and cover the queen. Practice mode is relaxed and has no opponent turn.</p></article>
-        </div>
-        <div class="physics-note"><span>✦</span><div><strong>REAL-TIME TABLE PHYSICS</strong><p>Coins collide, rebound from the cushions, slow down with surface friction and drop into pockets. Aim carefully—power is not everything.</p></div></div>
-      </section>
-    </main>
-
-    <nav class="bottom-nav" aria-label="Main navigation">
-      <button class="nav-item active" data-view="home-view"><span>⌂</span><small>HOME</small></button>
-      <button class="nav-item" data-view="mode-view"><span>♛</span><small>PLAY</small></button>
-      <button class="nav-item" data-view="collection-view"><span>◈</span><small>VAULT</small></button>
-      <button class="nav-item" data-view="leaderboard-view"><span>♜</span><small>RANKS</small></button>
-      <button class="nav-item" data-view="settings-view"><span>⚙</span><small>SETTINGS</small></button>
-    </nav>
-  </div>
-
-  <div id="pause-modal" class="modal-backdrop" hidden><div class="modal-card"><button class="modal-close" data-action="resume">×</button><span class="eyebrow">TAKE A BREATHER</span><h2>Game <em>paused.</em></h2><p>Your current match is waiting for you.</p><button class="primary-button full-button" data-action="resume">RESUME MATCH</button><button class="ghost-button full-button" data-action="leave-game">EXIT TO HOME</button></div></div>
-  <div id="result-modal" class="modal-backdrop" hidden><div class="modal-card result-card"><div class="result-crown">♛</div><span class="eyebrow" id="result-kicker">MATCH COMPLETE</span><h2 id="result-title">Victory!</h2><p id="result-copy">A royal performance.</p><div class="result-reward"><span>REWARD</span><strong id="result-coins">+50 COINS</strong></div><button class="primary-button full-button" data-action="rematch">PLAY AGAIN</button><button class="ghost-button full-button" data-action="home-result">BACK TO CLUB</button></div></div>
-  <div id="confirm-modal" class="modal-backdrop" hidden><div class="modal-card"><span class="eyebrow">ARE YOU SURE?</span><h2>Reset <em>progress?</em></h2><p>This permanently clears your local wallet, records and unlocked items on this device.</p><div class="modal-actions"><button class="danger-button" data-action="confirm-reset">YES, RESET</button><button class="secondary-button" data-action="cancel-reset">CANCEL</button></div></div></div>
-  <div id="toast" class="toast" role="status" aria-live="polite"></div>
-  <script src="js/physics.js"></script>
-  <script src="js/storage.js"></script>
-  <script src="js/rules.js"></script>
-  <script src="js/game.js"></script>
-</body>
-</html>
+<div id="app">
+<header class="topbar">
+ <button class="brand" id="homeBtn"><span class="logo">K</span><span><b>CARROM <em style="color:#f6c968">POOL</em></b><small>GAMERKIE EDITION</small></span></button>
+ <div class="wallet"><div class="pill">🪙 <span id="coins">350</span></div><div class="pill">💎 <span id="gems">12</span></div><button class="iconbtn" id="soundBtn" aria-label="Toggle sound">♫</button></div>
+</header>
+<section id="lobby" class="screen active">
+ <div class="hero"><div class="eyebrow">✦ THE ROYAL CARROM CLUB ✦</div><h1>PLAY. STRIKE. <em>POCKET.</em></h1><p>Become the king of the board.</p></div>
+ <div class="lobby-cards">
+  <button class="mode" data-mode="classic"><span class="symbol">♛</span><strong>PLAY CLASSIC</strong><small>Queen, cover & traditional rules</small></button>
+  <button class="mode" data-mode="disc"><span class="symbol">◉</span><strong>PLAY DISC POOL</strong><small>Clear all your pucks first</small></button>
+  <button class="mode" data-mode="free"><span class="symbol">✦</span><strong>FREESTYLE</strong><small>Score points to 120</small></button>
+  <button class="mode" data-mode="local"><span class="symbol">⚔</span><strong>2 PLAYER</strong><small>Pass & play on one device</small></button>
+ </div>
+ <div class="lobby-bottom"><div class="preview"></div><div><b style="color:#f6c968">ROYAL STRIKER</b><br>Procedural graphics · Offline play</div><button class="primary" id="startBtn">QUICK PLAY</button><button class="secondary" id="helpBtn">HOW TO PLAY</button></div>
+</section>
+<section id="game" class="screen">
+ <div class="hud">
+  <div class="player active" id="p0"><div class="avatar">Y</div><div><b id="name0">YOU</b><small id="score0">0 pts · 9 pucks</small></div><span class="turn-dot"></span></div>
+  <div style="font-size:9px;color:#f6c968;font-weight:900" id="modeLabel">CLASSIC</div>
+  <div class="player" id="p1"><div class="avatar">A</div><div><b id="name1">OPPONENT</b><small id="score1">0 pts · 9 pucks</small></div><span class="turn-dot"></span></div>
+ </div>
+ <div id="status">YOUR TURN · DRAG BACK TO AIM</div>
+ <div class="board-wrap"><canvas id="board" width="900" height="900" aria-label="Carrom board"></canvas></div>
+ <div class="controls">
+  <div class="sliderbox"><label><span>STRIKER POSITION</span><span id="posValue">50%</span></label><input id="position" type="range" min="15" max="85" value="50"></div>
+  <button class="ctrlbtn" id="resetAim" title="Reset aim">↺</button><button class="ctrlbtn" id="quitBtn" title="Home">⌂</button>
+ </div>
+ <div class="game-actions"><button id="difficultyBtn">AI: MEDIUM</button><button id="rulesBtn">RULES</button><button id="pauseBtn">PAUSE</button></div>
+</section>
+<div class="overlay" id="modal"><div class="modal"><h2 id="modalTitle">GAME OVER</h2><p id="modalText"></p><div class="row"><button class="primary" id="rematchBtn">REMATCH</button><button class="secondary" id="modalHome">HOME</button></div></div></div>
+<div id="toast"></div>
+</div>
+<script>
+(()=>{'use strict';
+const $=s=>document.querySelector(s), canvas=$('#board'),ctx=canvas.getContext('2d');
+const W=900,C=450,BOARD={min:75,max:825,pocket:47},R=15,STR=23;
+let mode='classic',turn=0,coins=[],striker=null,aim=null,moving=false,shotDone=false,queenPending=-1,scores=[0,0],pocketed=[0,0],difficulty=1,sound=true,paused=false,gameOver=false,particles=[],floating=[],last=0,acc=0,raf=0,position=.5,shotCount=0;
+let audioCtx=null,toastTimer;
+const clamp=(v,a,b)=>Math.max(a,Math.min(b,v)),dist=(a,b)=>Math.hypot(a.x-b.x,a.y-b.y);
+function audio(type,power=1){if(!sound)return;try{audioCtx ||= new (window.AudioContext||window.webkitAudioContext)();if(audioCtx.state==='suspended')audioCtx.resume();let o=audioCtx.createOscillator(),g=audioCtx.createGain(),t=audioCtx.currentTime;let f=type==='pocket'?180:type==='wall'?115:type==='foul'?90:260;o.type=type==='clack'?'triangle':'sine';o.frequency.setValueAtTime(f,t);o.frequency.exponentialRampToValueAtTime(Math.max(45,f*.42),t+.085);g.gain.setValueAtTime(Math.min(.22,.035+power*.035),t);g.gain.exponentialRampToValueAtTime(.001,t+.11);o.connect(g);g.connect(audioCtx.destination);o.start(t);o.stop(t+.12)}catch(e){}}
+function toast(s){let el=$('#toast');el.textContent=s;el.classList.add('show');clearTimeout(toastTimer);toastTimer=setTimeout(()=>el.classList.remove('show'),1150)}
+function showScreen(id){document.querySelectorAll('.screen').forEach(x=>x.classList.remove('active'));$('#'+id).classList.add('active')}
+function makeCoin(x,y,color,kind='coin'){return {x,y,vx:0,vy:0,r:kind==='striker'?STR:R,color,kind,alive:true,fall:0,owner:color==='white'?0:1}}
+function newGame(m=mode){mode=m;turn=0;scores=[0,0];pocketed=[0,0];queenPending=-1;shotCount=0;gameOver=false;paused=false;particles=[];floating=[];coins=[];
+ const ring=[];for(let i=0;i<9;i++){let a=i*Math.PI*2/9;ring.push([C+Math.cos(a)*42,C+Math.sin(a)*42])}
+ // central cluster: queen, six alternating around, then outer ring
+ coins.push(makeCoin(C,C,'red','queen'));
+ for(let i=0;i<6;i++){let a=i*Math.PI/3;coins.push(makeCoin(C+Math.cos(a)*28,C+Math.sin(a)*28,i%2?'black':'white'))}
+ for(let i=0;i<12;i++){let a=i*Math.PI/6;coins.push(makeCoin(C+Math.cos(a)*57,C+Math.sin(a)*57,i%2?'white':'black'))}
+ striker=makeCoin(C,735,'gold','striker');coins.push(striker);position=.5;$('#position').value=50;$('#posValue').textContent='50%';$('#modeLabel').textContent=m.toUpperCase()==='LOCAL'?'2 PLAYER':m.toUpperCase();
+ $('#name1').textContent=m==='local'?'PLAYER 2':'AI OPPONENT';updateHUD();showScreen('game');draw();cancelAnimationFrame(raf);last=0;acc=0;raf=requestAnimationFrame(loop);
+}
+function updateHUD(){$('#p0').classList.toggle('active',turn===0);$('#p1').classList.toggle('active',turn===1);$('#score0').textContent=`${scores[0]} pts · ${pocketed[0]} pucks`;$('#score1').textContent=`${scores[1]} pts · ${pocketed[1]} pucks`;$('#status').textContent=gameOver?'MATCH COMPLETE':moving?'PUCKS IN MOTION':turn===0?'YOUR TURN · DRAG BACK TO AIM':mode==='local'?'PLAYER 2 · YOUR TURN':'AI THINKING…'}
+function setupStriker(){striker.x=BOARD.min+100+position*(BOARD.max-BOARD.min-200);striker.y=turn===0?735:165;striker.vx=striker.vy=0;striker.alive=true;striker.fall=0}
+function overlapStriker(){return coins.some(c=>c!==striker&&c.alive&&c.kind!=='striker'&&dist(c,striker)<c.r+striker.r+1)}
+function startShot(vx,vy){if(moving||gameOver||turn===1&&mode!=='local')return;let p=Math.hypot(vx,vy);if(p<1.6){aim=null;draw();return}if(overlapStriker()){toast('STRIKER BLOCKED');aim=null;return}
+ striker.vx=vx;striker.vy=vy;shotDone=false;moving=true;shotCount++;aim=null;audio('clack',p/12);updateHUD()}
+function pocket(c){if(!c.alive)return;c.alive=false;c.fall=1;let idx=coins.indexOf(c);if(c===striker){audio('foul');floating.push({x:c.x,y:c.y,text:'FOUL!',life:1});return}
+ let owner=c.color==='white'?0:c.color==='black'?1:turn;
+ if(mode==='free'){scores[owner]+=c.kind==='queen'?50:c.color==='white'?20:10}else if(c.kind!=='queen')pocketed[owner]++;
+ if(c.kind==='queen'){if(mode==='classic'){queenPending=turn;floating.push({x:c.x,y:c.y,text:'QUEEN!',life:1})}else if(mode==='free')scores[owner]+=0}
+ audio('pocket');floating.push({x:c.x,y:c.y,text:c.kind==='queen'?'QUEEN!':'NICE SHOT!',life:1});for(let i=0;i<18;i++){let a=Math.random()*Math.PI*2,s=1+Math.random()*4;particles.push({x:c.x,y:c.y,vx:Math.cos(a)*s,vy:Math.sin(a)*s,life:1})}
+}
+function finishShot(){moving=false;let own=coins.filter(c=>c.alive&&c!==striker&&c.color===(turn===0?'white':'black')).length;
+ let hadValid=shotDone;
+ if(striker.fall>0||!striker.alive){let returned=coins.find(c=>!c.alive&&c.kind!=='striker'&&c.kind!=='queen');if(returned){returned.alive=true;returned.fall=0;returned.x=C;returned.y=C;returned.vx=returned.vy=0}queenPending=-1;turn=1-turn;toast('FOUL! TURN LOST')}
+ else if(queenPending===turn){let covered=coins.some(c=>!c.alive&&c.kind==='coin'&&c.color===(turn===0?'white':'black'));if(!covered){let q=coins.find(c=>c.kind==='queen');if(q){q.alive=true;q.x=C;q.y=C;q.vx=q.vy=0}toast('QUEEN NOT COVERED');queenPending=-1;turn=1-turn}else{toast('QUEEN COVERED!');queenPending=-1}}
+ else if(queenPending!==-1&&queenPending!==turn)queenPending=-1;
+ else if(!hadValid)turn=1-turn;
+ if(mode==='free'){if(scores[turn]>=120||scores[1-turn]>=120)endGame(scores[0]>=120?0:1)}
+ else {let w0=coins.filter(c=>c.alive&&c.color==='white').length,w1=coins.filter(c=>c.alive&&c.color==='black').length;if(w0===0||w1===0)endGame(w0===0?0:1)}
+ setupStriker();updateHUD();if(turn===1&&mode!=='local'&&!gameOver)setTimeout(aiTurn,650)}
+function endGame(w){gameOver=true;$('#modalTitle').textContent=w===0?'VICTORY!':'MATCH OVER';$('#modalText').textContent=(w===0?'You won the royal match!':'Opponent wins this round.')+` Final score ${scores[0]} – ${scores[1]}.`;$('#modal').classList.add('show');for(let i=0;i<100;i++)particles.push({x:Math.random()*W,y:-Math.random()*W,vx:(Math.random()-.5)*3,vy:2+Math.random()*4,life:1,confetti:true})}
+function aiTurn(){if(gameOver||turn!==1||mode==='local')return;updateHUD();let targets=coins.filter(c=>c.alive&&c!==striker&&c.kind!=='striker'&&c.color==='black');if(!targets.length){finishShot();return}let target=targets.sort((a,b)=>Math.hypot(a.x-C,a.y-C)-Math.hypot(b.x-C,b.y-C))[0];let pockets=[[75,75],[825,75],[75,825],[825,825]];let best=null;
+ for(let p of pockets){let dx=target.x-p[0],dy=target.y-p[1],d=Math.hypot(dx,dy)||1;let sx=target.x+dx/d*(target.r+STR+4),sy=target.y+dy/d*(target.r+STR+4);let vx=sx-striker.x,vy=sy-striker.y,l=Math.hypot(vx,vy)||1;let score=Math.hypot(vx,vy)+d*.35;if(!best||score<best.score)best={vx:vx/l,vy:vy/l,score}}
+ let v=4.8+difficulty*1.6;startShot(best.vx*v,best.vy*v)}
+function physics(dt){let subs=4,step=dt/subs;for(let k=0;k<subs;k++){
+ let active=coins.filter(c=>c.alive);for(let c of active){if(c.kind==='striker'&&c.fall>0)continue;c.x+=c.vx*step;c.y+=c.vy*step;c.vx*=Math.pow(.986,step*60);c.vy*=Math.pow(.986,step*60);if(Math.hypot(c.vx,c.vy)<.11)c.vx=c.vy=0;
+ let near=[[BOARD.min,c.y],[BOARD.max,c.y],[c.x,BOARD.min],[c.x,BOARD.max]];if(c.x-c.r<BOARD.min){c.x=BOARD.min+c.r;c.vx=Math.abs(c.vx)*.82;audio('wall',Math.abs(c.vx)/10)}if(c.x+c.r>BOARD.max){c.x=BOARD.max-c.r;c.vx=-Math.abs(c.vx)*.82;audio('wall',Math.abs(c.vx)/10)}if(c.y-c.r<BOARD.min){c.y=BOARD.min+c.r;c.vy=Math.abs(c.vy)*.82;audio('wall',Math.abs(c.vy)/10)}if(c.y+c.r>BOARD.max){c.y=BOARD.max-c.r;c.vy=-Math.abs(c.vy)*.82;audio('wall',Math.abs(c.vy)/10)}
+ // pocket capture
+ for(let p of [[75,75],[825,75],[75,825],[825,825]]){let d=Math.hypot(c.x-p[0],c.y-p[1]);if(d<BOARD.pocket-3){if(c.kind==='striker')c.fall=1;pocket(c);break}else if(d<BOARD.pocket+13){let pull=(BOARD.pocket+13-d)*.0015;c.vx+=(p[0]-c.x)*pull;c.vy+=(p[1]-c.y)*pull}}
+ }
+ // pairwise elastic circles
+ for(let i=0;i<active.length;i++)for(let j=i+1;j<active.length;j++){let a=active[i],b=active[j];if(!a.alive||!b.alive)continue;let dx=b.x-a.x,dy=b.y-a.y,d=Math.hypot(dx,dy),min=a.r+b.r;if(d>0&&d<min){let nx=dx/d,ny=dy/d,over=min-d;a.x-=nx*over*.5;a.y-=ny*over*.5;b.x+=nx*over*.5;b.y+=ny*over*.5;let rel=(b.vx-a.vx)*nx+(b.vy-a.vy)*ny;if(rel<0){let imp=-(1+.91)*rel/2;a.vx-=imp*nx;a.vy-=imp*ny;b.vx+=imp*nx;b.vy+=imp*ny;if(Math.abs(rel)>1.2){audio('clack',Math.abs(rel)/9);if(a.kind==='striker'||b.kind==='striker')shotDone=true}}}}
+ }
+ if(coins.some(c=>c.alive&&(Math.abs(c.vx)>.15||Math.abs(c.vy)>.15)))return;
+ if(moving)finishShot();
+}
+function woodTexture(){let g=ctx.createLinearGradient(80,80,820,820);g.addColorStop(0,'#f1c985');g.addColorStop(.45,'#dca968');g.addColorStop(1,'#bd8046');ctx.fillStyle=g;ctx.fillRect(75,75,750,750);
+ for(let i=0;i<75;i++){let y=85+i*10;ctx.strokeStyle=`rgba(91,47,20,${.025+Math.random()*.025})`;ctx.lineWidth=1;ctx.beginPath();ctx.moveTo(85,y);ctx.bezierCurveTo(280,y-8,520,y+8,815,y-2);ctx.stroke()}
+}
+function drawBoard(){ctx.clearRect(0,0,W,W);ctx.fillStyle='#3b211a';roundRect(20,20,860,860,55);ctx.fill();let lg=ctx.createLinearGradient(35,35,865,865);lg.addColorStop(0,'#f8d98e');lg.addColorStop(.5,'#9e5b25');lg.addColorStop(1,'#f2c36b');ctx.strokeStyle=lg;ctx.lineWidth=13;ctx.stroke();woodTexture();
+ ctx.strokeStyle='#6c321d';ctx.lineWidth=6;ctx.strokeRect(110,110,680,680);ctx.strokeStyle='#f5d18b';ctx.lineWidth=2;ctx.strokeRect(120,120,660,660);
+ // baseline markings
+ for(let side of [0,1,2,3]){ctx.save();ctx.translate(C,C);ctx.rotate(side*Math.PI/2);ctx.translate(-C,-C);ctx.strokeStyle='#8f2e25';ctx.lineWidth=4;ctx.beginPath();ctx.moveTo(230,690);ctx.lineTo(670,690);ctx.moveTo(230,710);ctx.lineTo(670,710);ctx.stroke();for(let x of [230,670]){ctx.beginPath();ctx.arc(x,700,24,0,Math.PI*2);ctx.stroke()}ctx.restore()}
+ // center mandala
+ ctx.save();ctx.translate(C,C);for(let i=0;i<16;i++){ctx.rotate(Math.PI/8);ctx.strokeStyle=i%2?'#9d3128':'#e9bd62';ctx.lineWidth=3;ctx.beginPath();ctx.ellipse(0,0,82,34,0,0,Math.PI*2);ctx.stroke()}ctx.beginPath();ctx.arc(0,0,67,0,Math.PI*2);ctx.strokeStyle='#8f2827';ctx.lineWidth=5;ctx.stroke();ctx.beginPath();ctx.arc(0,0,45,0,Math.PI*2);ctx.strokeStyle='#f7df9b';ctx.lineWidth=3;ctx.stroke();ctx.fillStyle='#a52c2a';ctx.beginPath();ctx.arc(0,0,13,0,Math.PI*2);ctx.fill();ctx.restore();
+ // foul arrows
+ ctx.strokeStyle='#96362c';ctx.lineWidth=3;for(let p of [[160,160],[740,160],[160,740],[740,740]]){ctx.beginPath();ctx.moveTo(p[0],p[1]);ctx.lineTo(C+(p[0]-C)*.42,C+(p[1]-C)*.42);ctx.stroke()}
+ // pockets
+ for(let [x,y] of [[75,75],[825,75],[75,825],[825,825]]){let gr=ctx.createRadialGradient(x-8,y-8,2,x,y,54);gr.addColorStop(0,'#05040a');gr.addColorStop(.7,'#171016');gr.addColorStop(.85,'#573a25');gr.addColorStop(1,'#d7a654');ctx.fillStyle=gr;ctx.beginPath();ctx.arc(x,y,54,0,Math.PI*2);ctx.fill();ctx.strokeStyle='#e5bc6d';ctx.lineWidth=4;ctx.stroke()}
+ // brass corner plates
+ for(let [x,y,sx,sy] of [[33,33,1,1],[867,33,-1,1],[33,867,1,-1],[867,867,-1,-1]]){ctx.save();ctx.translate(x,y);ctx.scale(sx,sy);ctx.fillStyle='#b57b35';ctx.strokeStyle='#ffe3a0';ctx.lineWidth=2;ctx.beginPath();ctx.moveTo(0,0);ctx.lineTo(65,0);ctx.lineTo(65,14);ctx.lineTo(14,14);ctx.lineTo(14,65);ctx.lineTo(0,65);ctx.closePath();ctx.fill();ctx.stroke();ctx.restore()}
+}
+function roundRect(x,y,w,h,r){ctx.beginPath();ctx.roundRect(x,y,w,h,r)}
+function drawPuck(c){if(!c.alive)return;let r=c.r;if(c.fall>0){r*=Math.max(.05,1-c.fall*.82);ctx.globalAlpha=Math.max(0,1-c.fall);c.fall=Math.min(1,c.fall+.08);if(c.fall>=1)return}
+ ctx.save();ctx.shadowColor='#4b241b99';ctx.shadowBlur=9;ctx.shadowOffsetY=5;let base=c.color==='white'?'#f7f1dd':c.color==='black'?'#211c25':c.color==='red'?'#c3262e':'#f7c74f';let grad=ctx.createRadialGradient(c.x-r*.35,c.y-r*.45,1,c.x,c.y,r*1.2);if(c.color==='white'){grad.addColorStop(0,'#fff');grad.addColorStop(.45,'#eee6d2');grad.addColorStop(1,'#a9a091')}else if(c.color==='black'){grad.addColorStop(0,'#85818b');grad.addColorStop(.28,'#34303a');grad.addColorStop(1,'#09080d')}else{grad.addColorStop(0,'#fff0a5');grad.addColorStop(.3,base);grad.addColorStop(1,'#8b421c')}
+ ctx.fillStyle=grad;ctx.beginPath();ctx.arc(c.x,c.y,r,0,Math.PI*2);ctx.fill();ctx.shadowBlur=0;ctx.strokeStyle=c.color==='white'?'#fff':'#ffe0a0';ctx.globalAlpha*=.7;ctx.lineWidth=2.5;ctx.stroke();ctx.globalAlpha=1;ctx.fillStyle='#ffffff77';ctx.beginPath();ctx.ellipse(c.x-r*.25,c.y-r*.43,r*.38,r*.13,-.4,0,Math.PI*2);ctx.fill();if(c.kind==='queen'){ctx.fillStyle='#f9d36c';ctx.font='bold 17px serif';ctx.textAlign='center';ctx.textBaseline='middle';ctx.fillText('♛',c.x,c.y+1)}ctx.restore()}
+function draw(){drawBoard();for(let c of coins)drawPuck(c);
+ if(striker?.alive){drawPuck(striker);if(overlapStriker()){ctx.strokeStyle='#ff4359';ctx.lineWidth=4;ctx.beginPath();ctx.arc(striker.x,striker.y,STR+7,0,Math.PI*2);ctx.stroke()}}
+ if(aim){let dx=aim.x-striker.x,dy=aim.y-striker.y,d=Math.hypot(dx,dy);if(d>1){let nx=-dx/d,ny=-dy/d;ctx.save();ctx.setLineDash([9,10]);ctx.strokeStyle='#fff5cf';ctx.lineWidth=3;ctx.beginPath();ctx.moveTo(striker.x,striker.y);ctx.lineTo(striker.x+nx*280,striker.y+ny*280);ctx.stroke();ctx.setLineDash([]);let power=clamp(d/140,0,1);ctx.strokeStyle=power<.5?'#4ee49d':power<.8?'#ffd34d':'#ff5364';ctx.lineWidth=6;ctx.beginPath();ctx.arc(striker.x,striker.y,STR+13+power*15,-Math.PI/2,-Math.PI/2+Math.PI*2*power);ctx.stroke();ctx.restore()}}
+ for(let p of particles){ctx.globalAlpha=p.life;ctx.fillStyle=p.confetti?['#f8c85e','#f9f2d7','#7ae3ba'][Math.floor(p.x)%3]:'#ffdf83';ctx.beginPath();ctx.arc(p.x,p.y,p.confetti?4:2.5,0,Math.PI*2);ctx.fill();ctx.globalAlpha=1}
+ for(let f of floating){ctx.globalAlpha=f.life;ctx.fillStyle='#fff1ad';ctx.font='bold 25px system-ui';ctx.textAlign='center';ctx.fillText(f.text,f.x,f.y-30*(1-f.life));ctx.globalAlpha=1}
+}
+function loop(t){if(!$('#game').classList.contains('active'))return;let dt=Math.min(.033,(t-last)/1000||0);last=t;if(!paused){if(moving)physics(dt);for(let p of particles){p.x+=p.vx;p.y+=p.vy;p.vy+=.04;p.life-=.018}particles=particles.filter(p=>p.life>0);for(let f of floating)f.life-=.025;floating=floating.filter(f=>f.life>0);draw()}raf=requestAnimationFrame(loop)}
+function point(e){let r=canvas.getBoundingClientRect();return{x:(e.clientX-r.left)*W/r.width,y:(e.clientY-r.top)*W/r.height}}
+let pointerDown=null;
+canvas.addEventListener('pointerdown',e=>{if(moving||gameOver||turn===1&&mode!=='local')return;let p=point(e);if(dist(p,striker)<STR+20){pointerDown=p;aim=p;canvas.setPointerCapture(e.pointerId);draw()}});
+canvas.addEventListener('pointermove',e=>{if(!pointerDown)return;aim=point(e);draw()});
+canvas.addEventListener('pointerup',e=>{if(!pointerDown)return;let p=point(e),dx=striker.x-p.x,dy=striker.y-p.y;pointerDown=null;let len=Math.hypot(dx,dy),mult=clamp(len/18,0,12);startShot(dx/Math.max(1,len)*mult,dy/Math.max(1,len)*mult);draw()});
+$('#position').addEventListener('input',e=>{position=+e.target.value/100;$('#posValue').textContent=e.target.value+'%';if(!moving){setupStriker();draw()}});
+document.querySelectorAll('[data-mode]').forEach(b=>b.addEventListener('click',()=>newGame(b.dataset.mode)));
+$('#startBtn').onclick=()=>newGame('classic');$('#homeBtn').onclick=()=>{cancelAnimationFrame(raf);showScreen('lobby')};$('#quitBtn').onclick=()=>{cancelAnimationFrame(raf);showScreen('lobby')};
+$('#resetAim').onclick=()=>{if(!moving){aim=null;setupStriker();draw()}};$('#soundBtn').onclick=()=>{sound=!sound;$('#soundBtn').textContent=sound?'♫':'🔇';toast(sound?'SOUND ON':'SOUND OFF')};
+$('#difficultyBtn').onclick=()=>{difficulty=(difficulty+1)%3;$('#difficultyBtn').textContent='AI: '+['EASY','MEDIUM','HARD'][difficulty]};$('#pauseBtn').onclick=()=>{paused=!paused;$('#pauseBtn').textContent=paused?'RESUME':'PAUSE';toast(paused?'PAUSED':'RESUMED')};
+$('#helpBtn').onclick=()=>{showModal('HOW TO PLAY','Move the striker with the slider. Touch the striker and drag backwards to aim, then release to shoot. Pocket your colour. Valid pockets earn another turn. Pocketing the striker is a foul.')};
+$('#rulesBtn').onclick=()=>showModal('GAME RULES','Classic: pocket your colour and cover the queen with your own puck on the same or next turn. Disc Pool: first to clear all 9 pucks wins. Freestyle: white +20, black +10, queen +50; first to 120 wins. A striker pocket is a foul and costs a turn.');
+function showModal(title,text){$('#modalTitle').textContent=title;$('#modalText').textContent=text;$('#rematchBtn').style.display='none';$('#modalHome').textContent='GOT IT';$('#modal').classList.add('show')}
+$('#modalHome').onclick=()=>{$('#modal').classList.remove('show');$('#rematchBtn').style.display='';$('#modalHome').textContent='HOME';if(gameOver){showScreen('lobby');cancelAnimationFrame(raf)}};
+$('#rematchBtn').onclick=()=>{$('#modal').classList.remove('show');newGame(mode)};
+canvas.addEventListener('contextmenu',e=>e.preventDefault());
+$('#coins').textContent=localStorage.getItem('gk-coins')||350;$('#gems').textContent=localStorage.getItem('gk-gems')||12;
+window.addEventListener('resize',draw);
+})();
+</script>
+</body></html>
